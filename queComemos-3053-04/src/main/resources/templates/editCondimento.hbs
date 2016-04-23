@@ -1,0 +1,55 @@
+{{# partial "titulo" }}
+	<title>Receta - QueComemos</title>
+{{/partial}}
+
+{{# partial "contenido" }}
+<h1>Edicion de Condimentos</h1>
+<br></br>
+<body>
+	<div class="container">
+		<form action="/receta/{{id}}/editar/condimento" method= "POST">
+			<div class="row">
+				<h3>Condimento a agregar</h3>
+				<div class="col-md-6">
+					<table class="table table-bordered">
+						<td>
+							<strong>Condimento</strong>
+							<input type="text" name="condimento">
+						</td>
+						<td>
+							<strong>Cantidad</strong>
+							<input type="text" name="dosiscond">
+						</td>
+						<td>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<h3>Condimento a quitar</h3>		
+				<br>		
+				<div class="col-md-2">
+					<select class="form-control" name="condimentoSeleccionado">
+						<option></option>
+						{{#receta.condimentos}}
+							<option>{{nombre}}</option>
+						{{/receta.condimentos}}
+					</select>
+				</div>
+			</div>
+				
+			<br><br>
+
+			<div class="row">
+				<div class="col-md-6">
+					<p class="text-center"><a class="btn btn-primary btn-lg" href="/receta/{{id}}" role="button">Volver</a></p>
+				</div>
+				<div class="col-md-6">
+					<p class = "text-center"><button type="submit" class="btn btn-primary btn-lg">Guardar</button></p>
+				</div>
+			</div>	
+		</form>	
+	</div>
+</body>
+{{/partial}}
+
+{{> layout.hbs }}

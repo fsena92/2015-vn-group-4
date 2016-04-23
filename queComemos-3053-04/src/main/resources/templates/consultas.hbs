@@ -1,0 +1,103 @@
+{{# partial "titulo" }}	
+	<title>Busqueda de Recetas - QueComemos</title>
+{{/partial}}
+		
+{{# partial "primero" }}	
+
+<h1> Busqueda de Recetas </h1>
+<br>
+<br>
+
+	<div class="container">
+		<form action="/consultas" method= "GET">
+			
+	<div class="col-md-6">
+				<div class="row">
+					<div class="row">
+						<div class="col-md-2">
+							<label for="filtro"> Nombre</label>		
+						</div>
+					<div class="col-md-4">
+						<input type="text" name="filtroNombre">
+					</div>
+					</div>
+		 
+			
+		
+				</div>
+	<br>
+	
+			<div class="row">
+		
+				<div class="row">
+					<div class="col-md-2">
+					<label for="filtroDificultad">Dificultad</label>		
+				</div>
+				<div class="col-md-4">
+				<select class="form-control" name="filtroDificultad">
+					<option></option>
+  					{{#dificultad}}
+  						<option>{{name}}</option>
+  					{{/dificultad}}
+				</select>
+				</div>
+			</div>
+		
+			</div>
+	</div>
+	
+		<div class="col-md-6">
+			<div class="row">
+		
+				<div class="row">
+					<div class="col-md-2">
+						<label for="filtroTemporada">Temporada</label>		
+					</div>
+					<div class="col-md-4">
+					<select class="form-control" name="filtroTemporada">
+						<option></option>
+						{{#temporadas}}
+							<option>{{name}}</option>
+						{{/temporadas}}
+					</select>
+					</div>
+				</div>
+			</div>
+		
+	
+	<br>
+	       <div class="row">
+			<div class="row">
+				<div class="col-md-2">
+					<label for="filtroCaloriaHasta">Calorias</label>
+				</div>
+				<div class="col-md-4">	
+					<input type="number" name="filtroCaloriasDesde">
+				</div>
+				
+			<div class="row">	
+				<div class="col-md-2">
+					<label for="filtroCaloriaDesde">hasta</label>
+				</div>
+				<div class="col-md-4">
+					<input type="number" name="filtroCaloriasHasta">
+				</div>
+			</div>
+			</div>
+			</div>	
+	</div>
+	
+	
+	
+	<div class="row"> <div class="col-md-12"> </div> </div>
+	<br>
+	<br>
+	<button type="submit" class="btn btn-primary btn-lg">Buscar</button>
+	
+	</form>
+	
+	</div>
+	
+{{/partial}}
+				
+{{> tabla.hbs }}

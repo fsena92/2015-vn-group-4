@@ -1,0 +1,137 @@
+{{# partial "titulo" }}
+	<title>Receta - QueComemos</title>
+{{/partial}}
+
+{{# partial "contenido" }}
+<h1>Detalle de Receta</h1>
+<br>
+<br>
+<body>
+	<div class="container">
+	<form action="/receta" method= "GET">
+
+
+<div class="row">
+
+  <div class="col-md-1"> <strong>Receta:</strong> </div>
+  	<div class="col-md-3">
+  		<p class="text-capitalize">{{receta.nombreDelPlato}}</p>
+  	</div>
+		<div class="col-md-4">
+			<div class="checkbox">
+			 <label>
+				 <input type="checkbox" id="blankCheckbox" {{#if favorita}} checked{{/if}}> <strong>Favorita</strong>
+			 </label>
+	 		</div>
+		</div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-1"><strong>Calorias:</strong></div>
+    	<div class="col-md-1">
+  			<p class="text-capitalize">{{receta.totalCalorias}}</p>
+  		</div>
+  <div class="col-md-1"><strong>Creador:</strong></div>
+    	<div class="col-md-4">
+  			<p class="text-capitalize">{{receta.creador}}</p>
+  		</div>
+</div>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-1"> <strong>Dificultad</strong></div>
+		<div class="col-md-2">
+		<form>
+  	<fieldset disabled>
+		<div class="form-group">
+      <select id="disabledSelect" class="form-control">
+        <option><p class="text-capitalize">{{receta.dificultad}}</p></option>
+      </select>
+    </div>
+	</fieldset>
+	</form>
+	</div>
+	<div class="col-md-3"></div>
+
+  <div class="col-md-1"> <strong>Temporada</strong> </div>
+	<div class="col-md-2">
+	<form>
+	<fieldset disabled>
+	<div class="form-group">
+		<select id="disabledSelect" class="form-control">
+			<option><p class="text-capitalize">{{receta.temporada}}</p></option>
+		</select>
+	</div>
+</fieldset>
+</form>
+</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<strong>Ingredientes</strong>
+		<br><br>
+  		<table class= "table table-bordered">
+			<td> <label>Nombre</label> </td>
+  			<td> <label>Cantidad</label> </td>
+	 			{{#receta.ingredientes}}
+				<tr>
+					<td><p class="text-capitalize">{{nombre}}</p></td>
+					<td><p class="text-capitalize">{{cantidad}}</p></td>
+				</tr>
+				{{/receta.ingredientes}}
+		</table>
+		<div class="col-md-6">
+			<p class="text-center"><a class="btn btn-primary btn-lg" href="/receta/{{id}}/editar/ingrediente" role="button">Agregar/Quitar ingredientes</a></p>
+		</div>
+  	</div>
+ 	<div class="col-md-6">
+ 		<strong>Condimentos</strong>
+		<br><br>
+		<table class= "table table-bordered">
+     		<td><label>Nombre</label></td>
+     		<td><label>Cantidad</label></td>
+     			{{#receta.condimentos}}
+  				<tr>
+					<td><p class="text-capitalize">{{nombre}}</p></td>
+					<td><p class="text-capitalize">{{cantidad}}</p></td>
+				</tr>
+  				{{/receta.condimentos}}
+		</table>
+		<div class="col-md-6">
+			<p class="text-center"><a class="btn btn-primary btn-lg" href="/receta/{{id}}/editar/condimento" role="button">Agregar/Quitar condimentos</a></p>
+		</div>
+  	</div>	
+ </div>
+
+	<div class="col-md-6"><strong>Condiciones Preexistentes</strong>
+		<br><br>
+		{{#receta.condiciones}}
+		<ul><span style="font-size: 120%"><em><p class="text-capitalize">{{nombre}}</p></em></span></ul>
+		{{/receta.condiciones}}
+	</div>
+
+<br><br>
+
+			<div class="row">
+  			<div class="col-md-6"> <strong>Proceso de Preparacion</strong> </div>
+			</div>
+
+			<em>{{receta.preparacion}}</em>
+			<br>
+			<br>
+	<div class="row">
+		<div class="col-md-6">
+			<p class="text-center"><a class="btn btn-primary btn-lg" href="/consultas/buscar" role="button">Volver</a></p>
+		</div>
+		<div class="col-md-6">
+			<p class="text-center"><a class="btn btn-primary btn-lg" href="/receta/{{id}}/editar" role="button">Editar encabezado y preparacion</a></p>
+		</div>
+	</div>
+
+		</form>
+	</div>
+</body>
+{{/partial}}
+
+{{> layout.hbs }}

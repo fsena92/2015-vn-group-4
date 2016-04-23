@@ -1,0 +1,46 @@
+﻿punto 1)
+
+punto 2)
+Para el punto dos se decidio aplicar un Builder, en una clase abstracta creamos todos los metodos nesesarios para instanciar una receta de forma que esta siempre sea valida sin poder instanciar recetas que no cumplan con esta condicion, para poder aplicar estos metodos ya que la clase es abstracta se debe utilizar una de las clases BuilderReceta o BuilderRecetaPublica que son las encargadas de decidir que tipo de receta se va a crear (publica o una que tenga dueño) y utilizar los metodos de la clase padre para poder crear las recetas validas
+De esta forma siempre que instanciemos una receta la misma va a cumplir con las condiciones minimas exigidas y va a ser completamente funcional, antes de aplicar el patron esto no sucedia ya que se poidian crear recetas sin ningun atributo seteado sin contar todas las variables extra que habia que instanciar.
+
+
+punto 3)
+Para el command del envío de mails tuve que crear la abstracción de un mail con atributos como los datos propios que pide
+el enunciado que son los filtros, consultas y usuario.
+Para la tarea del envío de mail en particular, cree la clase CommandMailSender que es la encargada de ejecutar el envío de mail,
+recibiendo por parámetros al usuario, la consulta y los filtros y así, poder crear la instancia de un mail y realizar dicho envío
+por medio de un componente externo.
+Este componente externo lo representé con el MailSenderPosta (que es ajeno al sistema) que implementa la interfaz MailSender junto
+a CommandMailSender. Esto permite poder testear el envío correcto o no de un mail. Este componente es externo al sistema.
+En cuanto a la condición del envío de mail a ciertos usuario, hice una colección de suscriptores en la cual deberían agregarse
+a los usuario que reciben los mails cuando consulten. Esta colección la instancié en la clase RepositorioDeReceta por una cuestión
+de que esa clase es la encargada de listar (busqueda) de las recetas de un usuario, y de manera que pueda quedar esa sola instancia de
+suscriptores.
+En RepositorioDeReceta también hice una colección de mailsPendientes donde se almacenan los distintos envíos de mails que se guardan
+cada vez que un suscriptor realice una consulta. De esta manera, en toda la colección quedan registrados todos los envíos de mail
+a ejecutar posteriormente.
+
+
+
+
+punto 4)
+
+Para este command cree la clase LoguearConsultas,elegi usar el Log4j porque es muy facil y rapido de configurar utilizando propiedades 
+del sistema o un archivo de configuraciones, teniendo en cuenta que puede que en un futuro se necesite enviar logs por mail, plasmarlos
+en archivos, etc.En LoguarConsultas use un log.INFO para que en el caso de que una consulta devuelva mas de 100 
+resultado imprima por la consola "Consultas Con Mas De 100 Resultados" y para que sea asincronico agregue el metodo
+ agregarLogsDeConsulta en RepositorioDeRecetas para agregar los logs a una coleccion de logs por medio del metodo agregarAcciones.
+
+
+
+punto 5)
+
+Para el marcado de las recetas como favoritas, �sea guardar en el historial de un usuario, agregue en la creaci�n del perfil
+el un par�metro de tipo booleano para ver si el usuario quiere marcar recetas o no.
+Para hacer el marcado de recetas de forma asincr�nica cada vez que se realice una consulta la acci�n de marcar las recetas
+se va a guardar en una colecci�n perteneciente al usuario que realizo la consulta, entonces en otro momento se va a ejecutar
+cada una de estas por el usuario.
+La Clase que implementa a Command y que se encarga de ejecutar, lo hace en el caso de tener un usuario con la marca de
+favorita en true, en caso de que la tenga en false no ejecuta.
+Luego de ejecutar todas las acciones dentro de la colecci�n, elimino el contenido para que vuelva a recibir nuevas acciones

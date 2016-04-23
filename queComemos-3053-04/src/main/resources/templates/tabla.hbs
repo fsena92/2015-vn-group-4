@@ -1,0 +1,51 @@
+{{# partial "contenido" }}
+
+{{# block "primero" }}
+{{/block}}  
+
+	<div class="row">
+		{{#if recetas}}
+		<div class="col-md-12">	
+		
+		  
+    
+<table class="table table-bordered" >
+			<hr>
+				<td><strong>Nombre</strong></td>
+				<td><strong>Calorías</strong></td>
+				<td><strong>Dificultad</strong></td>
+				<td><strong>Temporada</strong></td>
+				<td><strong>Origen</strong></td>
+				
+			</hr>
+		{{#recetas}}
+			<tr>
+				<div class="list-group">
+				    <td> {{nombreDelPlato}} </td>
+					<td>{{totalCalorias}}</td>
+					<td>{{Dificultad}}</td>
+					<td>{{Temporada}}</td>
+					<td> {{origen}} </td>
+					<td><a href="/receta/{{id}}" class="btn btn-default"> Ver Receta </a></td>
+					</div>
+			</tr>
+		{{/recetas}}
+	</table>
+	
+  
+		</div>
+		{{else}}
+		<br>
+		<br>
+  <h3>No se encontraron recetas</h3>
+	<br>
+    
+  {{/if}}
+		<br>
+		<!-- <button type="submit" class="btn btn-default">Ver Receta</button> -->
+		 <!--a class="btn btn-primary"   href="/receta/:id">Ver Receta</a-->
+		<br>
+	</div>
+{{/partial}}
+				
+{{> layout.hbs }}

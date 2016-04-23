@@ -1,0 +1,74 @@
+{{# partial "titulo" }}
+	<title>Receta - QueComemos</title>
+{{/partial}}
+
+{{# partial "contenido" }}
+<h1>Edicion de Receta</h1>
+<br></br>
+<body>
+	<div class="container">
+		<form action="/receta/{{id}}/editar" method= "POST">
+			<div class="row">
+				<div class="col-md-1"> <strong>Receta:</strong> </div>
+				<div class="col-md-3">
+					<input type="text" name="nombreDelPlato" value = {{receta.nombreDelPlato}}>
+				</div>
+				<div class="col-md-4">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="blankCheckbox"  name="fav"{{#if favorita}} checked{{/if}}> <strong>Favorita</strong>
+						</label>
+					</div>
+				</div>
+			</div>
+<br></br>
+			<div class="row">
+					<div class="col-md-1"><strong>Calorias:</strong></div>
+						<div class="col-md-3">
+							<input type="myNumber" name="calorias" value = {{receta.totalCalorias}}>
+						</div>
+				<div class="col-md-1"> <strong>Dificultad</strong> </div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<select class="form-control" name="dificultad" value = {{receta.dificultad}}>
+							{{#dificultad}}
+		  						<option>{{name}}</option>
+		  					{{/dificultad}}
+						</select>
+					</div>
+				</div>
+				<div class="col-md-1"> <strong>Temporada</strong> </div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<select class="form-control" name="temporada" value = {{receta.temporada}}>
+							{{#temporadas}}
+							<option>{{name}}</option>
+							{{/temporadas}}
+						</select>
+					</div>
+				</div>
+			</div>
+
+<br></br>
+			<div class="row">
+				<div class="col-md-6"> <strong>Proceso de Preparacion</strong> </div>
+			
+			<div class="col-md-10">
+			<textarea class="form-control" rows="5" name="preparacion" >{{receta.preparacion}}</textarea>
+			</div>
+			</div>
+<br></br>
+			<div class="row">
+				<div class="col-md-6">
+					<p class="text-center"><a class="btn btn-primary btn-lg" href="/receta/{{id}}" role="button">Volver</a></p>
+				</div>
+				<div class="col-md-6">
+					<p class = "text-center"><button type="submit" class="btn btn-primary btn-lg">Guardar</button></p>
+				</div>
+			</div>	
+		</form>	
+	</div>
+</body>
+{{/partial}}
+
+{{> layout.hbs }}
